@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 function FirstPart() {
+  const [data, setData] = useState();
+
   const ws = new WebSocket("wss://ws.bitstamp.net");
 
   const apiCall = {
@@ -9,7 +11,7 @@ function FirstPart() {
   };
 
   ws.onopen = (event) => {
-    console.log("ororo");
+    // console.log("ororo");
     ws.send(JSON.stringify(apiCall));
   };
   ws.onmessage = function (event) {
@@ -17,16 +19,22 @@ function FirstPart() {
     console.log(`[message] Data received from server: ${json}`);
     try {
       if ((json.event = "data")) {
-        console.log(json.data.bids);
-        console.log(json.data.asks);
-        console.log(json.data.bids[0]);
-        para.textContent = json.data.bids[0];
+        // console.log(json.data.bids);
+        // console.log(json.data.asks);
+        console.log(json.data.bids[0][0]);
+        // setData(json.data.bids[0]);
+        setData(json.data.bids[0][0]);
       }
     } catch (err) {
       console.log(err);
     }
   };
-  return <div>loool</div>;
+  return (
+    <div>
+      {" "}
+      <p>{data}</p>{" "}
+    </div>
+  );
 }
 
 export default FirstPart;
