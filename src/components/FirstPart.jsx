@@ -48,7 +48,7 @@ function FirstPart() {
   const firstBids = bids.map((item) => {
     return (
       <div className="flexing" key={uniqid()}>
-        <p style={{ color: "red" }}> {item[0]}</p>
+        <p style={{ color: "green" }}> {item[0]}</p>
         <p style={{ color: "white" }}> {item[1]}</p>
         <p style={{ color: "white" }}> {item[0] * item[1]}</p>
       </div>
@@ -56,7 +56,13 @@ function FirstPart() {
   });
   //map the first 15 asks
   const firstAsks = asks.map((item) => {
-    return <p key={uniqid()}>{item}</p>;
+    return (
+      <div className="flexing" key={uniqid()}>
+        <p style={{ color: "red" }}> {item[0]}</p>
+        <p style={{ color: "white" }}> {item[1]}</p>
+        <p style={{ color: "white" }}> {item[0] * item[1]}</p>
+      </div>
+    );
   });
 
   // console.log(bids);
@@ -68,17 +74,17 @@ function FirstPart() {
       {/* <p>{bids.btc}</p>
       <p>{bids.usd} </p> */}
       <div>
-        <h1>Bids</h1>
+        <h1 style={{ color: "white" }}>Asks</h1>
         <div className="flexing">
           <h4 style={{ color: "grey" }}>Fiyat(USDT)</h4>
           <h4 style={{ color: "grey" }}>Miktar(BTC)</h4>
           <h4 style={{ color: "grey" }}>Toplam</h4>
         </div>
-        {firstBids}
+        {firstAsks}
       </div>
       <div>
-        <h1>Asks</h1>
-        {firstAsks}
+        <h1 style={{ color: "white" }}>Bids</h1>
+        {firstBids}
       </div>
     </div>
   );
