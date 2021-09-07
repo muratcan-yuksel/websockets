@@ -50,7 +50,7 @@ function FirstPart() {
       <div className="flexing" key={uniqid()}>
         <p style={{ color: "green" }}> {item[0]}</p>
         <p style={{ color: "white" }}> {item[1]}</p>
-        <p style={{ color: "white" }}> {item[0] * item[1]}</p>
+        <p style={{ color: "white" }}> {(item[0] * item[1]).toFixed(4)}</p>
       </div>
     );
   });
@@ -60,7 +60,7 @@ function FirstPart() {
       <div className="flexing" key={uniqid()}>
         <p style={{ color: "red" }}> {item[0]}</p>
         <p style={{ color: "white" }}> {item[1]}</p>
-        <p style={{ color: "white" }}> {item[0] * item[1]}</p>
+        <p style={{ color: "white" }}> {(item[0] * item[1]).toFixed(4)}</p>
       </div>
     );
   });
