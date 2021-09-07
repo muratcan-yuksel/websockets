@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import uniqid from "uniqid";
+import "../style/app.css";
 
 function FirstPart() {
   //give an initial state so that the data won't be undefined
@@ -45,7 +46,13 @@ function FirstPart() {
 
   //map the first 15 bids
   const firstBids = bids.map((item) => {
-    return <p key={uniqid()}>{item}</p>;
+    return (
+      <div className="flexing" key={uniqid()}>
+        <p> {item[0]}</p>
+        <p> {item[1]}</p>
+        <p> {item[0] * item[1]}</p>
+      </div>
+    );
   });
   //map the first 15 asks
   const firstAsks = asks.map((item) => {
@@ -53,7 +60,7 @@ function FirstPart() {
   });
 
   // console.log(bids);
-  console.log(asks);
+  // console.log(asks);
   return (
     <div>
       <p>of</p>
@@ -62,6 +69,11 @@ function FirstPart() {
       <p>{bids.usd} </p> */}
       <div>
         <h1>Bids</h1>
+        <div className="flexing">
+          <h4>Fiyat(USDT)</h4>
+          <h4>Miktar(BTC)</h4>
+          <h4>Toplam</h4>
+        </div>
         {firstBids}
       </div>
       <div>

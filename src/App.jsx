@@ -1,5 +1,5 @@
 import React from "react";
-import FirstPart from "./FirstPart";
+import FirstPart from "./components/FirstPart";
 
 function App() {
   return (
