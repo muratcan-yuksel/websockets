@@ -48,9 +48,9 @@ function FirstPart() {
   const firstBids = bids.map((item) => {
     return (
       <div className="flexing" key={uniqid()}>
-        <p> {item[0]}</p>
-        <p> {item[1]}</p>
-        <p> {item[0] * item[1]}</p>
+        <p style={{ color: "red" }}> {item[0]}</p>
+        <p style={{ color: "white" }}> {item[1]}</p>
+        <p style={{ color: "white" }}> {item[0] * item[1]}</p>
       </div>
     );
   });
@@ -70,9 +70,9 @@ function FirstPart() {
       <div>
         <h1>Bids</h1>
         <div className="flexing">
-          <h4>Fiyat(USDT)</h4>
-          <h4>Miktar(BTC)</h4>
-          <h4>Toplam</h4>
+          <h4 style={{ color: "grey" }}>Fiyat(USDT)</h4>
+          <h4 style={{ color: "grey" }}>Miktar(BTC)</h4>
+          <h4 style={{ color: "grey" }}>Toplam</h4>
         </div>
         {firstBids}
       </div>
