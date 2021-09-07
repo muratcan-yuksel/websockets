@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
 function FirstPart() {
-  const [data, setData] = useState();
+  //give an initial state so that the data won't be undefined
+  const [bids, setBids] = useState({ usd: "usd", btc: "btc" });
 
   const ws = new WebSocket("wss://ws.bitstamp.net");
 
@@ -23,7 +24,7 @@ function FirstPart() {
         // console.log(json.data.asks);
         // console.log(json.data.bids[0][0]);
         // setData(json.data.bids[0]);
-        setData({ usd: json.data.bids[0][0], btc: json.data.bids[0][1] });
+        setBids({ usd: json.data.bids[0][0], btc: json.data.bids[0][1] });
         // setData(json.data.bids[1]);
       }
     } catch (err) {
@@ -32,9 +33,10 @@ function FirstPart() {
   };
   return (
     <div>
-      <p>{data.btc}</p>
-      <p>{data.usd} </p>
       <p>of</p>
+
+      <p>{bids.btc}</p>
+      <p>{bids.usd} </p>
     </div>
   );
 }
