@@ -62,11 +62,11 @@ function FirstPart() {
       <p>{bids.usd} </p> */}
       <div>
         <h1>Bids</h1>
-        <firstBids />
+        {firstBids}
       </div>
       <div>
         <h1>Asks</h1>
-        <firstAsks />
+        {firstAsks}
       </div>
     </div>
   );
