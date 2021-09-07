@@ -26,14 +26,12 @@ function FirstPart() {
       // console.log(`[message] Data received from server: ${json}`);
       try {
         if ((json.event = "data")) {
-          // console.log(json.data.bids);
-          // console.log(json.data.asks);
-          // console.log(json.data.bids[0][0]);
-          // setBids({ usd: json.data.bids[0][0], btc: json.data.bids[0][1] });
-          // setAsks({ usd: json.data.bids[0][0], btc: json.data.bids[0][1] });
-          // console.log(json.data.bids);
-
+          //önce sıralayalım
+          //büyükten küçüğe
+          //(bids is arranged by itself)
           setBids(json.data.bids.slice(0, 15));
+          //küçükten büyüğe
+          //(asks too is arranged by itself)
           setAsks(json.data.asks.slice(0, 15));
         }
       } catch (err) {
@@ -45,18 +43,31 @@ function FirstPart() {
     return () => ws.close();
   }, []);
 
-  const firstNElements = bids.map((item) => {
+  //map the first 15 bids
+  const firstBids = bids.map((item) => {
+    return <p key={uniqid()}>{item}</p>;
+  });
+  //map the first 15 asks
+  const firstAsks = asks.map((item) => {
     return <p key={uniqid()}>{item}</p>;
   });
 
-  console.log(bids);
+  // console.log(bids);
+  console.log(asks);
   return (
     <div>
       <p>of</p>
 
       {/* <p>{bids.btc}</p>
       <p>{bids.usd} </p> */}
-      {firstNElements}
+      <div>
+        <h1>Bids</h1>
+        <firstBids />
+      </div>
+      <div>
+        <h1>Asks</h1>
+        <firstAsks />
+      </div>
     </div>
   );
 }
