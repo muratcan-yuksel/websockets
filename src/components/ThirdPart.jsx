@@ -91,7 +91,7 @@ const ThirdPart = () => {
         <h4 style={{ color: "grey" }}>Miktar</h4>
         <h4 style={{ color: "grey" }}>Saat</h4>
       </div>
-      <div className="flexing">
+      <div className="flexing scrollable">
         <div>{mapType}</div>
         <div>{mapPrices}</div>
         <div>{mapAmount}</div>
