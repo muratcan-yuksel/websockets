@@ -68,6 +68,23 @@ const SecondPart = () => {
     );
   });
 
+  const mapDate = state.map((item) => {
+    let date = item.datetime;
+    let dateArr = Array.from(String(date), Number);
+    dateArr.splice(2, 0, ":");
+    dateArr.splice(5, 0, ":");
+    dateArr.splice(-4);
+    let lastArr = dateArr.join("");
+    return (
+      <p key={uniqid()} style={{ color: "white" }}>
+        {lastArr}{" "}
+      </p>
+    );
+  });
+
+  console.log("date" + state[0].datetime);
+  console.log("micro" + state[0].microtimestamp);
+
   return (
     <div>
       <h3>Piyasa Alım Satımları</h3>
@@ -79,6 +96,7 @@ const SecondPart = () => {
       <div className="flexing">
         <div>{mapPrices}</div>
         <div>{mapAmount}</div>
+        <div>{mapDate}</div>
       </div>
     </div>
   );
