@@ -13,25 +13,15 @@ const SecondPart = () => {
   };
 
   ws.onopen = (event) => {
-    // console.log("ororo");
     ws.send(JSON.stringify(apiCall));
   };
 
   //clean up lest memory leaks
   useEffect(() => {
     ws.onmessage = function (event) {
-      // console.log(event);
       const json = JSON.parse(event.data);
-      // console.log(`[message] Data received from server: ${json}`);
       try {
         if ((json.event = "data")) {
-          // console.log("price" + json.data.price);
-          // console.log("amount" + json.data.amount);
-          // console.log(json.data.order_type);
-          // console.log("date time" + json.data.datetime);
-          // console.log("micro time " + json.data.microtimestamp);
-          // console.log(json.data);
-          // setPrice((price) => [json.data.price, ...price.slice(0, 30)]);
           setState((state) => [json.data, ...state.slice(0, 30)]);
         }
       } catch (err) {
@@ -41,7 +31,6 @@ const SecondPart = () => {
     //clean up function
     return () => ws.close();
   }, []);
-  // console.log(price);
   console.log(state);
   //map prices with dynamic colors
   const mapPrices = state.map((item) => {
@@ -81,9 +70,6 @@ const SecondPart = () => {
       </p>
     );
   });
-
-  console.log("date" + state[0].datetime);
-  console.log("micro" + state[0].microtimestamp);
 
   return (
     <div>
