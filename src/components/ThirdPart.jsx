@@ -3,7 +3,7 @@ import uniqid from "uniqid";
 import "../style/app.css";
 
 const ThirdPart = () => {
-  const [state, setState] = useState([0]);
+  const [state, setState] = useState([]);
 
   const ws = new WebSocket("wss://ws.bitstamp.net");
 
@@ -32,8 +32,8 @@ const ThirdPart = () => {
     //clean up function
     return () => ws.close();
   }, []);
-
-  const mapPrices = state.map((item) => {
+  //map type with dynamic colors
+  const mapType = state.map((item) => {
     if (item.type === 0) {
       return (
         <p key={uniqid()} style={{ color: "green" }}>
@@ -48,6 +48,41 @@ const ThirdPart = () => {
       );
     }
   });
+
+  const mapPrices = state.map((item) => {
+    return (
+      <p key={uniqid()} style={{ color: "white" }}>
+        {item.price}
+      </p>
+    );
+  });
+
+  const mapAmount = state.map((item) => {
+    return (
+      <p key={uniqid()} style={{ color: "white" }}>
+        {item.amount}
+      </p>
+    );
+  });
+
+  let mapDate = state.map((item) => {
+    //this if statement solves the problem with getting a first NaN on the screen
+    if (item.timestamp !== undefined) {
+      let date = item.timestamp;
+      let dateArr = Array.from(String(date), Number);
+      dateArr.splice(2, 0, ":");
+      dateArr.splice(5, 0, ":");
+      dateArr.splice(-4);
+      let lastArr = dateArr.join("");
+      return (
+        <p key={uniqid()} style={{ color: "white" }}>
+          {lastArr}{" "}
+        </p>
+      );
+    }
+  });
+  //   console.log(mapDate);
+
   return (
     <div>
       <div className="flexing">
@@ -57,9 +92,10 @@ const ThirdPart = () => {
         <h4 style={{ color: "grey" }}>Saat</h4>
       </div>
       <div className="flexing">
+        <div>{mapType}</div>
         <div>{mapPrices}</div>
-        {/* <div>{mapAmount}</div>
-        <div>{mapDate}</div> */}
+        <div>{mapAmount}</div>
+        <div>{mapDate}</div>
       </div>
     </div>
   );
