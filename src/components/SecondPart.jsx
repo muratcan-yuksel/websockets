@@ -3,6 +3,8 @@ import uniqid from "uniqid";
 import "../style/app.css";
 
 const SecondPart = () => {
+  const [data, setData] = useState([0]);
+
   const ws = new WebSocket("wss://ws.bitstamp.net");
 
   const apiCall = {
@@ -18,25 +20,27 @@ const SecondPart = () => {
   //clean up lest memory leaks
   useEffect(() => {
     ws.onmessage = function (event) {
+      // console.log(event);
       const json = JSON.parse(event.data);
       // console.log(`[message] Data received from server: ${json}`);
       try {
         if ((json.event = "data")) {
-          console.log("price" + json.data.price);
-          console.log("amount" + json.data.amount);
-          console.log(json.data.order_type);
-          console.log("date time" + json.data.datetime);
-          console.log("micro time " + json.data.microtimestamp);
+          // console.log("price" + json.data.price);
+          // console.log("amount" + json.data.amount);
+          // console.log(json.data.order_type);
+          // console.log("date time" + json.data.datetime);
+          // console.log("micro time " + json.data.microtimestamp);
+          // console.log(json.data);
+          setData((data) => [...data, json.data.price]);
         }
       } catch (err) {
         console.log(err);
       }
-      // console.log(bids);
     };
     //clean up function
     return () => ws.close();
   }, []);
-
+  console.log(data);
   return <div></div>;
 };
 

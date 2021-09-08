@@ -3,11 +3,11 @@ import uniqid from "uniqid";
 import "../style/app.css";
 
 function FirstPart() {
-  //give an initial state so that the data won't be undefined
+  //give an initial state so that the data won't be undefined at start
   const [asks, setAsks] = useState([0]);
   const [bids, setBids] = useState([0]);
-  //define the number of items
-  const n = 15;
+  // //define the number of items
+  // const n = 15;
 
   const ws = new WebSocket("wss://ws.bitstamp.net");
 
@@ -17,7 +17,6 @@ function FirstPart() {
   };
 
   ws.onopen = (event) => {
-    // console.log("ororo");
     ws.send(JSON.stringify(apiCall));
   };
   //clean up lest memory leaks
@@ -71,8 +70,6 @@ function FirstPart() {
     <div>
       <p>of</p>
 
-      {/* <p>{bids.btc}</p>
-      <p>{bids.usd} </p> */}
       <div>
         <h1 style={{ color: "white" }}>Asks</h1>
         <div className="flexing">
