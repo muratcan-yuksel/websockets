@@ -3,7 +3,8 @@ import uniqid from "uniqid";
 import "../style/app.css";
 
 const SecondPart = () => {
-  const [data, setData] = useState([0]);
+  const [price, setPrice] = useState([0]);
+  const [state, setState] = useState([0]);
 
   const ws = new WebSocket("wss://ws.bitstamp.net");
 
@@ -31,7 +32,8 @@ const SecondPart = () => {
           // console.log("date time" + json.data.datetime);
           // console.log("micro time " + json.data.microtimestamp);
           // console.log(json.data);
-          setData((data) => [json.data.price, ...data.slice(0, 30)]);
+          setPrice((price) => [json.data.price, ...price.slice(0, 30)]);
+          setState((state) => [json.data, ...state.slice(0, 30)]);
         }
       } catch (err) {
         console.log(err);
@@ -40,8 +42,26 @@ const SecondPart = () => {
     //clean up function
     return () => ws.close();
   }, []);
-  console.log(data);
-  return <div></div>;
+  // console.log(price);
+  console.log(state);
+  //map prices with dynamic colors
+  const mapPrices = state.map((item) => {
+    if (item.order_type === 0) {
+      return (
+        <p key={item.id} style={{ color: "green" }}>
+          {item.price}
+        </p>
+      );
+    } else if (item.order_type === 1) {
+      return (
+        <p key={item.id} style={{ color: "red" }}>
+          {item.price}
+        </p>
+      );
+    }
+  });
+
+  return <div>{mapPrices}</div>;
 };
 
 export default SecondPart;
