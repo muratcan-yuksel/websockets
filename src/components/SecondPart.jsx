@@ -31,7 +31,7 @@ const SecondPart = () => {
           // console.log("date time" + json.data.datetime);
           // console.log("micro time " + json.data.microtimestamp);
           // console.log(json.data);
-          setData((data) => [...data, json.data.price]);
+          setData((data) => [json.data.price, ...data]);
         }
       } catch (err) {
         console.log(err);
