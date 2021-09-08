@@ -81,7 +81,6 @@ const ThirdPart = () => {
       );
     }
   });
-  //   console.log(mapDate);
 
   return (
     <div>
