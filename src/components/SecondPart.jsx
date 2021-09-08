@@ -3,7 +3,6 @@ import uniqid from "uniqid";
 import "../style/app.css";
 
 const SecondPart = () => {
-  const [price, setPrice] = useState([0]);
   const [state, setState] = useState([0]);
 
   const ws = new WebSocket("wss://ws.bitstamp.net");
@@ -32,7 +31,7 @@ const SecondPart = () => {
           // console.log("date time" + json.data.datetime);
           // console.log("micro time " + json.data.microtimestamp);
           // console.log(json.data);
-          setPrice((price) => [json.data.price, ...price.slice(0, 30)]);
+          // setPrice((price) => [json.data.price, ...price.slice(0, 30)]);
           setState((state) => [json.data, ...state.slice(0, 30)]);
         }
       } catch (err) {
@@ -61,7 +60,28 @@ const SecondPart = () => {
     }
   });
 
-  return <div>{mapPrices}</div>;
+  const mapAmount = state.map((item) => {
+    return (
+      <p key={uniqid()} style={{ color: "white" }}>
+        {item.amount}
+      </p>
+    );
+  });
+
+  return (
+    <div>
+      <h3>Piyasa Alım Satımları</h3>
+      <div className="flexing">
+        <h4 style={{ color: "grey" }}>Fiyat(USDT)</h4>
+        <h4 style={{ color: "grey" }}>Miktar(BTC)</h4>
+        <h4 style={{ color: "grey" }}>Saat</h4>
+      </div>
+      <div className="flexing">
+        <div>{mapPrices}</div>
+        <div>{mapAmount}</div>
+      </div>
+    </div>
+  );
 };
 
 export default SecondPart;
