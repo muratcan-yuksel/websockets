@@ -48,13 +48,13 @@ const SecondPart = () => {
   const mapPrices = state.map((item) => {
     if (item.order_type === 0) {
       return (
-        <p key={item.id} style={{ color: "green" }}>
+        <p key={uniqid()} style={{ color: "green" }}>
           {item.price}
         </p>
       );
     } else if (item.order_type === 1) {
       return (
-        <p key={item.id} style={{ color: "red" }}>
+        <p key={uniqid()} style={{ color: "red" }}>
           {item.price}
         </p>
       );
