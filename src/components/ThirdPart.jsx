@@ -3,6 +3,8 @@ import uniqid from "uniqid";
 import "../style/app.css";
 
 const ThirdPart = () => {
+  const [state, setState] = useState([0]);
+
   const ws = new WebSocket("wss://ws.bitstamp.net");
 
   const apiCall = {
@@ -21,6 +23,7 @@ const ThirdPart = () => {
       try {
         if ((json.event = "data")) {
           console.log(json.data);
+          setState((state) => [json.data, ...state]);
         }
       } catch (err) {
         console.log(err);
@@ -29,7 +32,37 @@ const ThirdPart = () => {
     //clean up function
     return () => ws.close();
   }, []);
-  return <div></div>;
+
+  const mapPrices = state.map((item) => {
+    if (item.type === 0) {
+      return (
+        <p key={uniqid()} style={{ color: "green" }}>
+          BUY(BTC)
+        </p>
+      );
+    } else if (item.type === 1) {
+      return (
+        <p key={uniqid()} style={{ color: "red" }}>
+          SELL(BTC)
+        </p>
+      );
+    }
+  });
+  return (
+    <div>
+      <div className="flexing">
+        <h4 style={{ color: "grey" }}>Tür</h4>
+        <h4 style={{ color: "grey" }}>Fiyat</h4>
+        <h4 style={{ color: "grey" }}>Miktar</h4>
+        <h4 style={{ color: "grey" }}>Saat</h4>
+      </div>
+      <div className="flexing">
+        <div>{mapPrices}</div>
+        {/* <div>{mapAmount}</div>
+        <div>{mapDate}</div> */}
+      </div>
+    </div>
+  );
 };
 
 export default ThirdPart;
