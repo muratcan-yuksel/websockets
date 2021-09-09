@@ -36,13 +36,13 @@ const ThirdPart = () => {
   const mapType = state.map((item) => {
     if (item.type === 0) {
       return (
-        <p key={uniqid()} style={{ color: "green" }}>
+        <p key={uniqid()} className="green">
           BUY(BTC)
         </p>
       );
     } else if (item.type === 1) {
       return (
-        <p key={uniqid()} style={{ color: "red" }}>
+        <p key={uniqid()} className="red">
           SELL(BTC)
         </p>
       );
@@ -51,7 +51,7 @@ const ThirdPart = () => {
 
   const mapPrices = state.map((item) => {
     return (
-      <p key={uniqid()} style={{ color: "white" }}>
+      <p key={uniqid()} className="white">
         {item.price}
       </p>
     );
@@ -59,7 +59,7 @@ const ThirdPart = () => {
 
   const mapAmount = state.map((item) => {
     return (
-      <p key={uniqid()} style={{ color: "white" }}>
+      <p key={uniqid()} className="white">
         {item.amount}
       </p>
     );
@@ -75,7 +75,7 @@ const ThirdPart = () => {
       dateArr.splice(-4);
       let lastArr = dateArr.join("");
       return (
-        <p key={uniqid()} style={{ color: "white" }}>
+        <p key={uniqid()} className="white">
           {lastArr}{" "}
         </p>
       );
