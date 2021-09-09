@@ -22,6 +22,12 @@ const SecondPart = () => {
       const json = JSON.parse(event.data);
       try {
         if ((json.event = "data")) {
+          //I think in redux toolkit, this should be sth like this:
+          // //  dispatch(
+          //   login (or data or whatever)({
+          //    [json.data, ...initialStateValue.slice(0,30)]
+          //   })
+          // );
           setState((state) => [json.data, ...state.slice(0, 30)]);
         }
       } catch (err) {

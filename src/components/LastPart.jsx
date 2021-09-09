@@ -6,8 +6,8 @@ const LastPart = () => {
   return (
     <div>
       <TradingViewWidget
-        width="980"
-        height="610"
+        width="500"
+        height="300"
         symbol="BITSTAMP:BTCUSD "
         interval="5"
         timezone="Etc/UTC"
